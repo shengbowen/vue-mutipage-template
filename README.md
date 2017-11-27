@@ -1,18 +1,10 @@
 ## 前言
-`vue2.0`上线已经有一段时间了，现在`vue2.1`也都已经发布了，是时候来更新基于vue的多页面脚手架了。
+本工作流是在https://github.com/bluefox1688/vue-cli-multi-page 的基础上修改，来满足我们业务需求的。
+
 
 相信用vue的童鞋，很多一部分在用于spa（单页面）项目，也不排除传统的多页面项目，我们就用vue开发了多页面的webapp，相对于spa开发效率更高，使用单页面或者多页面，最终还是看项目的需求啦。
 
-这一次我们基于`vuejs2+webpack2+vuxui2`(好222的项目)重新发布了全新的vue脚手架，同时还支持二级目录，以解决页面比较多时，便于归类查找的问题。基于webpack2，构建速度高。ajax获取数据，使用`axios`，当然还有其他的优化，咱们先看看demo呗。
-
-demo地址：
-http://v.lanchenglv.com/demo/vue2-cli-vux2-multe-page/views/home/list.html
-
-github地址：
-https://github.com/bluefox1688/vue-cli-multi-page
-
-** 此版仅支持vu2.0，如果需要vue1.0多页面脚手架，请访问分支 **
-https://github.com/bluefox1688/vue-cli-multi-page/tree/master 
+这一次我们基于`vuejs2+webpack2+mintui`(好222的项目)重新发布了全新的vue脚手架，同时还支持二级目录，以解决页面比较多时，便于归类查找的问题。基于webpack2，构建速度高。ajax获取数据，使用`axios`，当然还有其他的优化，咱们先看看demo呗。
 
 ## 2.0的主要功能
 
@@ -25,7 +17,7 @@ https://github.com/bluefox1688/vue-cli-multi-page/tree/master
  7. 支持二级目录，便于归类，1.0版本暂时仅支持一级目录
  8. 模块下静态文件可直接调用
  9. 发送ajax请求，使用`axios`库，简单封装了一个库，为了减少学习成本，封装参数基本与`JQ ajax`一致，如果不需要可直接删除
- 10. 整合了vue最流行的UI框架，`vuxui2.x`，`github star` 已接近`8K`了，组件非常全面，并且作者一直有维护，从`0.x`版本我就开始有使用了，具体了解更多，请访问官网 https://vux.li
+ 10. 整合了vue最流行的UI框架mint ui。
  11. 基于`webpack2`，更高的构建速度，包体积更小，全面支持`ES6 Modules`
  12. 热更新，效率提升神器呀
  13. 支持`Less`css预处理
@@ -51,57 +43,41 @@ npm run build
 
 
 ## 目录结构
-``` 
+```
 webpack
  |---build
  |---src
-     |---assets    #资源
-     |---css/common.css  #css
-     |---font/    #字体图标
-     |---js/common.js    #自己定义的全局通用事件
-     |---js/conf.js    #项目的配置
-     |---js/Lib.js    #暴露接口给组件调用
-     |---js/vueFilter.js    #注册vue的全局过滤器	
- |---components 组件
-     |---Button.vue  按钮组件
-     |---hb-head.vue  head组件
-|---views    #各个页面模块，模块名可以自定义哦！
-     |---home    #一级目录
-        |---list    #二级目录
-             |---list.html
-             |---list.js
-             |---listApp.vue
-     |---vuxDemo    #一级目录
-        |---button    #二级目录
-             |---button.html
-             |---button.js
-             |---buttonApp.vue	
-        |---calendar    #二级目录
-             |---calendar.html
-             |---calendar.js
-             |---calendarApp.vue		 
+    |---assets    #资源
+    |---css/common.css  #css
+    |---font/    #字体图标
+    |---js/common.js    #自己定义的全局通用事件
+    |---js/conf.js    #项目的配置
+    |---js/Lib.js    #暴露接口给组件调用
+    |---js/vueFilter.js    #注册vue的全局过滤器
+    |---components 组件
+      |--footer
+    |---pages    # 多页应用 对应的页面
+      |--index
+        |--index
+          |--App.vue
+          |--Home.vue
+          |--index.html
+          |--index.js #入口js
+    |---views    # vue-router 导航的页面
+    |--store # vuex相关的action、mutation
+    |--config
+      |--router # vue-router
+        |--index
+          |--index.js #首页的路由
+
 ......
-     
+
   ```
 此次2.0版本也优化也可以自定义模块的名称，1.0版时，无法自定义模块名。
 
 例如 http:// localhost:8091/`views`/home/list.html，`views`就是我们线上的模块名，如需修改请到项目目录文件config/index.js修改`moduleName`参数，修改这里的配置的同时，也要同时重命名`/src/views`的这个文件夹名称，是否会报错的。
-  
+
   从目录结构上，各种组件、页面模块、资源等都按类新建了文件夹，方便我们储存文件。其实我们所有的文件，最主要都是放在`views`文件夹里，以文件夹名为html的名称。
-例如
-
-``` stylus
-|---vuxDemo    一级目录
- |---button    二级目录
-   |---button.html
-   |---button.js
-   |---buttonApp.vue	
-```
-就是我们访问时的地址：
-
-``` stylus
-http://localhost:8091/views/vuxDemo/button.html
-```
 
 在`view`里二级文件夹，一个文件夹就是一个html，`js``vue``html` 都统一放在当前文件夹里，当然你也可以继续放其他的资源，例如css、图片等，webpack会打包到当前模块里。
 
