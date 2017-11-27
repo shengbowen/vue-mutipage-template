@@ -1,0 +1,18 @@
+.clearfix::after, .clearfix::before {
+	content: '.';
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.lazy-changed .view-image-placeholder {
+	display: none;
+}
+.view-image-wrap.lazy-changed .view-image {
+	left: 0;
+	transform: none;
+}
+.post-reply-content-pic .view-image-wrap.lazy-changed {
+	text-align: left;
+	width: 100%;
+}

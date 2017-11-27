@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= htmlWebpackPlugin.options.filename %></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    p {
+      height: 30px;
+      padding: 5px !important;
+      text-align: center
+    }
+    p a {
+      font-size: 25px;
+      cursor: pointer;
+      color: #5cb85c;
+    }
+    </style>
+  </head>
+  <body>
+    <p>
+      <% for(var i=0; i<htmlWebpackPlugin.options.paths.length; i++) {%>
+        <a href="<%= htmlWebpackPlugin.options.paths[i] %>"><%= htmlWebpackPlugin.options.paths[i] %></a><br>
+      <% } %>
+    </p>
+  </body>
+</html>

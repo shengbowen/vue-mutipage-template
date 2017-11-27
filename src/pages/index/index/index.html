@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title><?=isset($data_title) ? $data_title : '魅族社区'?></title>
+    <!-- flexible.js  inline -->
+    <script>
+      !function(a,b){function c(){var b=f.getBoundingClientRect().width;b/i>540&&(b=540*i);var c=b/10;f.style.fontSize=c+"px",k.rem=a.rem=c}var d,e=a.document,f=e.documentElement,g=e.querySelector('meta[name="viewport"]'),h=e.querySelector('meta[name="flexible"]'),i=0,j=0,k=b.flexible||(b.flexible={});if(g){console.warn("将根据已有的meta标签来设置缩放比例");var l=g.getAttribute("content").match(/initial\-scale=([\d\.]+)/);l&&(j=parseFloat(l[1]),i=parseInt(1/j))}else if(h){var m=h.getAttribute("content");if(m){var n=m.match(/initial\-dpr=([\d\.]+)/),o=m.match(/maximum\-dpr=([\d\.]+)/);n&&(i=parseFloat(n[1]),j=parseFloat((1/i).toFixed(2))),o&&(i=parseFloat(o[1]),j=parseFloat((1/i).toFixed(2)))}}if(!i&&!j){var p=(a.navigator.appVersion.match(/android/gi),a.chrome),q=a.navigator.appVersion.match(/iphone/gi),r=a.devicePixelRatio;i=q||p?r>=3&&(!i||i>=3)?3:r>=2&&(!i||i>=2)?2:1:1,j=1/i}if(f.setAttribute("data-dpr",i),!g)if(g=e.createElement("meta"),g.setAttribute("name","viewport"),g.setAttribute("content","initial-scale="+j+", maximum-scale="+j+", minimum-scale="+j+", user-scalable=no"),f.firstElementChild)f.firstElementChild.appendChild(g);else{var s=e.createElement("div");s.appendChild(g),e.write(s.innerHTML)}a.addEventListener("resize",function(){clearTimeout(d),d=setTimeout(c,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(d),d=setTimeout(c,300))},!1),"complete"===e.readyState?e.body.style.fontSize=12*i+"px":e.addEventListener("DOMContentLoaded",function(a){e.body.style.fontSize=12*i+"px"},!1),c(),k.dpr=a.dpr=i,k.refreshRem=c,k.rem2px=function(a){var b=parseFloat(a)*this.rem;return"string"==typeof a&&a.match(/rem$/)&&(b+="px"),b},k.px2rem=function(a){var b=parseFloat(a)/this.rem;return"string"==typeof a&&a.match(/px$/)&&(b+="rem"),b}}(window,window.lib||(window.lib={}));
+    </script>
+
+    <script type="text/javascript">
+    </script>
+
+    <style>
+      noscript .image img {
+        height: 130px;
+      }
+      noscript .image {
+        text-align: center;
+      }
+      noscript h1 {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      noscript .item {
+        display: block;
+        padding: 10px;
+        border-bottom: 1px solid #d8d8d8;
+      }
+      noscript .info {
+        clear: both;
+        overflow: hidden;
+        margin: 10px 0 10px;
+        line-height: 30px;
+      }
+      noscript .author {
+        float: left;
+      }
+      noscript .author img {
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        font-size: 0;
+        vertical-align: middle;
+      }
+      noscript .author span {
+        font-size: 12px;
+      }
+      noscript .view {
+        float: right;
+        font-size: 12px;
+      }
+      header.mint-header.mz{
+        background: #00c3f5;
+      }
+      .mint-header.mz .mint-header-title {
+        color: #fff;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <noscript>
+      <!--板块列表-->
+      <div class="item">
+      <?php if (isset($data_seo['forums'])): ?>
+      <?php foreach ($data_seo['forums'] as $key => $value): ?>
+        <div title="<?=$value['group']?>" class="item">
+          <h1 title="<?=$value['group']?>"><?=$value['group']?></h1>
+          <div>
+          <?php foreach ($value['list'] as $_k => $_v): ?>
+            <a title="魅族社区板块<?=$_v['name']?>" href="<?=$_v['url']?>"><?=$_v['name']?></a>
+          <?php endforeach ?>
+          </div>
+        </div>
+      <?php endforeach ?>
+      <?php endif ?>
+      </div>
+      <!--热门推荐列表-->
+      <?php if (isset($data_seo['list'])): ?>
+      <div>
+      <?php foreach ((array)$data_seo['list'] as $key => $value): ?>
+        <a href="<?=$value['url']?>" title="<?=$value['subject']?>" target="_blank" class="item">
+          <h1><?=$value['subject']?></h1>
+          <div class="info">
+            <div class="author">
+              <span title="作者"><?=$value['author']?></span>
+              <img src="<?=$value['avatar']?>" title="<?=$value['author']?>的头像" alt="<?=$value['author']?>" />
+            </div>
+            <div class="view">
+              <span title="回复数"><?=$value['replies']?></span>
+              <span title="浏览数"><?=$value['views']?></span>
+            </div>
+          </div>
+          <!--图片搜索-->
+          <div class="image">
+            <img src="<?=$value['pic']?>" title="<?=$value['subject']?>" alt="<?=$value['subject']?>" />
+          </div>
+        </a>
+      <?php endforeach ?>
+      </div>
+      <?php endif ?>
+      <?=isset($data_pager) ? $data_pager : ''?>
+    </noscript>
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?286d9c6c54e45134ec2445db56e87565";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+
+      /*分享活动*/
+
+      var bbs_app_invite = {};
+      bbs_app_invite.getCookie = function (cookie_name){//获取指定名称的cookie的值
+          var arrStr = document.cookie.split("; ");
+          for(var i = 0;i < arrStr.length;i ++){
+          var temp = arrStr[i].split("=");
+          if(temp[0] == cookie_name)
+          return unescape(temp[1]);
+          }
+          return false;
+      }
+      if(bbs_app_invite.getCookie('MZBBS_2132_invitecode') && bbs_app_invite.getCookie('MZBBSUC_2132_loginmember')){
+        document.write("<script src='https://bbs-app.meizu.cn/index.php?mod=invite&action=resolve'><\/script>");
+      }
+      </script>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
