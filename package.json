@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "node build/build.js && npm run copy",
+    "build": "node build/build.js",
     "copy": " npm run copy_php && npm run copy_static",
     "copy_php": "rsync -ar ./dist/pages/* ../template/",
     "copy_static": "rsync -ar ./dist/static_new/* ../../bbs.res.meizu.com/static_new/",

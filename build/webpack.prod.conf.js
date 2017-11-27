@@ -153,7 +153,7 @@ var pages =  utils.getMultiEntry('./src/'+config.moduleName+'/**/**/*.html');
 for (var pathname in pages) {
 
   var conf = {
-    filename: pathname + '.php',
+    filename: pathname + '.html',
     template: pages[pathname], // 模板路径
     chunks: ['vendor','manifest','vue', pathname], // 每个html引用的js模块
     inject: true              // js插入位置
