@@ -1,6 +1,8 @@
 <template>
   <div class="home-wrap" style="-webkit-overflow-scrolling: touch;">
-    hello
+    <p>
+      <a href="#/search">搜索</a>
+    </p>
   </div>
 </template>
 
@@ -59,5 +61,16 @@ export default {
     padding-top: 87rem / @rem-unit;
     box-sizing: border-box;
     overflow: auto;
+  }
+
+  p {
+    height: 30px;
+    padding: 5px !important;
+    text-align: center
+    }
+  p a {
+    font-size: 25px;
+    cursor: pointer;
+    color: #5cb85c;
   }
 </style>
